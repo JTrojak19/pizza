@@ -9,6 +9,8 @@ class Components extends CI_Controller
     }
     public function index()
     {
-        print_r($this->Components_model->getComponent(1));
+        $component = $this-> Components_model -> getComponent(1);
+        $component->bigPizza();
+        print_r($component);
     }
 }
