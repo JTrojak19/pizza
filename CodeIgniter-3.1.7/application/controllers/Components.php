@@ -9,8 +9,19 @@ class Components extends CI_Controller
     }
     public function index()
     {
-        $component = $this-> Components_model -> getComponent(1);
-        $component->bigPizza();
-        print_r($component);
+        $this->load->voew('components/index');
+    }
+    public function get($id = null)
+    {
+        if ($id !== null)
+        {
+            $component = $this-> Components_model -> getComponent($id);
+            print_r($component);
+        }
+        else
+        {
+            show_404();
+        }
+
     }
 }

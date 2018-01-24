@@ -11,6 +11,15 @@ class Components_model extends CI_Model
     public function getComponent($id)
     {
         $component = $this->db->where('id', $id)->get('components');
-        return $component->result('Component')[0];
+
+        if ($component -> num_rows() > 0) {
+            return $component->result('Component')[0];
+        }
+
+        return null;
+    }
+    public function getAllComponents()
+    {
+
     }
 }
