@@ -20,6 +20,11 @@ class Components_model extends CI_Model
     }
     public function getAllComponents()
     {
+        $component = $this->db->get('components');
 
+        if ($component -> num_rows() > 0)
+        {
+            return $component->result('Component');
+        }
     }
 }

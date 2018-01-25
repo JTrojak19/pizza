@@ -12,6 +12,15 @@ class Component
     public $name;
     public $price;
 
+    public function __construct()
+    {
+        $this->updatePrice();
+    }
+
+    private function updatePrice()
+    {
+        $this-> price /= 100;
+    }
 
     public function bigPizza()
     {
