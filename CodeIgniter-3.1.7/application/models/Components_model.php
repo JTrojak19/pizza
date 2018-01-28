@@ -27,4 +27,17 @@ class Components_model extends CI_Model
             return $component->result('Component');
         }
     }
+    private function checkIfExists(Component $component)
+    {
+        $component = $this->db ->where('name', $component -> name) -> get('components');
+        return $component -> num_rows() > 0;
+    }
+    public function addComponent(Component $component)
+    {
+        if ($this-> checkIfExists($component))
+        {
+            return false;
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'application/class/Component.php';
 class Components extends CI_Controller
 {
     public function __construct()
@@ -9,16 +10,13 @@ class Components extends CI_Controller
     }
     public function index()
     {
-        $this->load->view('components/index', [
+        $this->load->view('components/index', array(
             'components' => $this->Components_model -> getAllComponents()
-        ]);
+        ));
     }
     public function get($id = null)
     {
-        if ($this-> input -> is_ajax_request())
-        {
-            return;
-        }
+        $this-> isAllowed();
         if ($id !== null)
         {
             $component = $this-> Components_model -> getComponent($id);
@@ -31,6 +29,24 @@ class Components extends CI_Controller
     }
     public function add()
     {
+        $this->isAllowed();
 
+        $component =  new Component($this ->input -> post('name'), $this ->input ->post('price'));
+
+        if (!$component -> isValid())
+        {
+            http_response_code(400);
+            return;
+        }
+
+
+    }
+    private function isAllowed()
+    {
+        if ($this-> input -> is_ajax_request() && !$this ->input -> get('format'))
+        {
+            http_response_code(404);
+            exit();
+        }
     }
 }

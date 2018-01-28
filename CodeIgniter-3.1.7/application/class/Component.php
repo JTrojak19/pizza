@@ -12,9 +12,18 @@ class Component
     public $name;
     public $price;
 
-    public function __construct()
+    public function __construct($name = null, $price = null)
     {
+        if (!isset($this -> name) && $name != null)
+        {
+            $this ->name = $name;
+        }
+        if (!isset($this -> price) && $name != null)
+        {
+            $this -> price = $price;
+        }
         $this->updatePrice();
+
     }
 
     private function updatePrice()
@@ -25,5 +34,9 @@ class Component
     public function bigPizza()
     {
         $this->price *= 2;
+    }
+    public function isValid()
+    {
+        return $this -> name !== null && $this -> price !== null;
     }
 }
