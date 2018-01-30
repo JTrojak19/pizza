@@ -29,10 +29,10 @@ class Components extends CI_Controller
     }
     public function add()
     {
+        $this->load->view('components/add');
         $this->isAllowed();
 
         $component =  new Component($this ->input -> post('name'), $this ->input ->post('price'));
-
         if (!$component -> isValid())
         {
             http_response_code(400);

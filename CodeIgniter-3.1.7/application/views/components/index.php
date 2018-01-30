@@ -2,6 +2,7 @@
 <body>
 <div>
     <?php
+    $this->load->helper('url');
     if (sizeof($components) > 0 ) {
         foreach ($components as $component):
             echo "Nazwa: " . $component->name;
@@ -11,7 +12,9 @@
         ?>
     <?php endforeach;}
     ?>
-    <button>Dodaj Nowy Składnik</button>
+    <form action="<?php echo site_url('index.php/components/add')?>" method="post">
+        <input type="submit" value="Add new component">
+    </form>
 </div>
 </body>
 </html>
