@@ -38,8 +38,14 @@ class Components extends CI_Controller
             http_response_code(400);
             return;
         }
-
-
+        if ($component->price > 0)
+        {
+            $newComponent = $this->Components_model ->addComponent($component);
+        }
+        else
+        {
+            return null;
+        }
     }
     private function isAllowed()
     {

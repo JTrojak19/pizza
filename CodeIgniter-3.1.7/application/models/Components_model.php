@@ -38,6 +38,9 @@ class Components_model extends CI_Model
         {
             return false;
         }
+        $this->db ->insert('components', $component);
+        $id = $this ->db -> insert_id();
+        return $this->getComponent($id);
     }
 
 }
